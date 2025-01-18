@@ -7,7 +7,7 @@ public class UnitDeck {
 	String deckName;
 	
 	public UnitDeck(String deckName) {
-		setCardsInDeck(null);
+		setCardsInDeck(new ArrayList<>());
 		setDeckName(deckName);
 	}
 	
