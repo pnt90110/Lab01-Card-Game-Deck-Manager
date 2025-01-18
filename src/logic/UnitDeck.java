@@ -1,7 +1,6 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.function.BooleanSupplier;
 
 public class UnitDeck {
 	ArrayList<CardCounter> cardsInDeck;

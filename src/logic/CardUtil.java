@@ -19,14 +19,12 @@ public class CardUtil {
 	}
 	
 	public static boolean isExistsInList(UnitDeck deck, ArrayList<UnitDeck> list) {
-		
-		//TODO: Fill Code
+
 		for(UnitDeck e:list) {
 			if(e.equals(deck))
 				return true;
 		}
 		return false;
-			
 
 	}
 	
@@ -34,8 +32,10 @@ public class CardUtil {
 		
 		//TODO: Fill Code
 		for(UnitDeck e:deckList) {
-			if(e.equals(deck))
-				return true;
+			for(CardCounter ee: e.getCardsInDeck()) {
+				if(ee.getCard().equals(cardToTest))
+					return true;
+			}
 		}
 		return false;
 	}
@@ -45,9 +45,42 @@ public class CardUtil {
 		File fileToRead = new File(filename);
 		ArrayList<UnitCard> cardsFromFile = new ArrayList<UnitCard>();
 
-		//TODO: Fill Code
-		
-		return null;
+		// Fill Code
+		try (Scanner scanner = new Scanner(fileToRead)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] data = line.split(","); 
+
+                if (data.length != 5) {
+                    System.err.println("Invalid card data format in line: " + line);
+                    return null; // Return null on invalid data format
+                }
+                
+                String name = data[0];
+                int bloodCost;
+                int power;
+                int health;
+                String flavorText = data[4];
+
+                try {
+                    bloodCost = Integer.parseInt(data[1]);
+                    power = Integer.parseInt(data[2]);
+                    health = Integer.parseInt(data[3]);
+                } catch (NumberFormatException e) {
+                    System.err.println("Error parsing numbers in line: " + line);
+                    return null; // Return null on number parsing error
+                }
+                
+                UnitCard card = new UnitCard(name, bloodCost, power, health, flavorText);
+                cardsFromFile.add(card);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + filename);
+            return null; // Return null on file not found
+        }
+
+        return cardsFromFile;
+
 	}
 
 	public static void printCardList(ArrayList<UnitCard> cardList, boolean verbose) {
