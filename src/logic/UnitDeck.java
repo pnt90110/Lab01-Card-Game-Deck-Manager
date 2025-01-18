@@ -13,18 +13,16 @@ public class UnitDeck {
 	
 	public void addCard(UnitCard newCard, int count) {
 		if(count<=0)return;
-		boolean found=false;
 		for(CardCounter e:cardsInDeck) {
 			if(newCard.equals(e.getCard()))
 			{
 				e.setCount(e.getCount()+count);
 				found=true;
-				break;
+				return;
 			}
-			if(found==false) {
-				CardCounter c=new CardCounter (newCard,count);
-				this.cardsInDeck.add(c);
-			}
+			CardCounter c=new CardCounter (newCard,count);
+			this.cardsInDeck.add(c);
+			return;
 		}
 	}
 	
