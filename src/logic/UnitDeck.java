@@ -12,17 +12,22 @@ public class UnitDeck {
 	}
 	
 	public void addCard(UnitCard newCard, int count) {
+
 		if(count<=0)return;
 		for(CardCounter e:cardsInDeck) {
+
 			if(newCard.equals(e.getCard()))
 			{
+				
 				e.setCount(e.getCount()+count);
 				return;
 			}
-			CardCounter c=new CardCounter (newCard,count);
-			this.cardsInDeck.add(c);
-			return;
 		}
+		CardCounter c=new CardCounter (newCard,count);
+		
+		this.cardsInDeck.add(c);
+		return;
+		
 	}
 	
 	public void removeCard(UnitCard toRemove,int count) {

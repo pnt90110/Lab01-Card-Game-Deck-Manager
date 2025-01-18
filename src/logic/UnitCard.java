@@ -64,8 +64,8 @@ public class UnitCard {
 		this.flavorText = flavorText;
 	}
 
-	boolean equals(UnitCard other) {
-		if(this.name==other.name) 
+	public boolean equals(UnitCard other) {
+		if(this.getName()==other.getName()) 
 			return true;
 		return false;
 	}
