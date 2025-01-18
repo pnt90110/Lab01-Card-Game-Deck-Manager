@@ -10,6 +10,10 @@ public class CardUtil {
 	public static boolean isExistsInList(UnitCard card, ArrayList<UnitCard> list) {
 		
 		//TODO: Fill Code
+		for(UnitCard e:list) {
+			if(e.equals(card))
+				return true;
+		}
 		return false;
 
 	}
@@ -17,13 +21,22 @@ public class CardUtil {
 	public static boolean isExistsInList(UnitDeck deck, ArrayList<UnitDeck> list) {
 		
 		//TODO: Fill Code
+		for(UnitDeck e:list) {
+			if(e.equals(deck))
+				return true;
+		}
 		return false;
+			
 
 	}
 	
 	public static boolean cardExistsInDeckList(ArrayList<UnitDeck> deckList, UnitCard cardToTest) {
 		
 		//TODO: Fill Code
+		for(UnitDeck e:deckList) {
+			if(e.equals(deck))
+				return true;
+		}
 		return false;
 	}
 	

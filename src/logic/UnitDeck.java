@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.function.BooleanSupplier;
 
 public class UnitDeck {
 	ArrayList<CardCounter> cardsInDeck;
@@ -44,15 +45,15 @@ public class UnitDeck {
 	
 	public int cardCount() {
 		int sum=0;
-		for(CardCounter e:cardsInDeck) {
+		for(CardCounter e:this.getCardsInDeck()) {
 			sum+=e.getCount();
 		}
 		return sum;
 	}
 
-	public boolean existInDeck(UnitCard card) {
-		for(CardCounter e:cardsInDeck) {
-			if(e.getCard()==card)
+	public boolean existsInDeck(UnitCard card) {
+		for(CardCounter e:this.getCardsInDeck()) {
+			if(e.getCard()==card&e.getCount()>0)
 				return true;
 		}
 		return false;
