@@ -17,7 +17,6 @@ public class UnitDeck {
 			if(newCard.equals(e.getCard()))
 			{
 				e.setCount(e.getCount()+count);
-				found=true;
 				return;
 			}
 			CardCounter c=new CardCounter (newCard,count);
