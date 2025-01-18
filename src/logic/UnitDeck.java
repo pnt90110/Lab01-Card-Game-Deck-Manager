@@ -6,21 +6,70 @@ public class UnitDeck {
 	ArrayList<CardCounter> cardsInDeck;
 	String deckName;
 	
-	UnitDeck(String deckName) {
+	public UnitDeck(String deckName) {
 		setCardsInDeck(null);
 		setDeckName(deckName);
 	}
 	
-	void addCard(UnitCard newCard, int count) {
-		
+	public void addCard(UnitCard newCard, int count) {
+		if(count<=0)return;
+		boolean found=false;
+		for(CardCounter e:cardsInDeck) {
+			if(newCard.equals(e.getCard()))
+			{
+				e.setCount(e.getCount()+count);
+				found=true;
+				break;
+			}
+			if(found==false) {
+				CardCounter c=new CardCounter (newCard,count);
+				this.cardsInDeck.add(c);
+			}
+		}
+	}
+	
+	public void removeCard(UnitCard toRemove,int count) {
+		if(count<=0)return;
+		for(CardCounter e:cardsInDeck) {
+			if(toRemove.equals(e.getCard()))
+			{
+				e.setCount(e.getCount()-count);
+				if(e.getCount()==0) {
+					cardsInDeck.remove(e);
+				}
+				break;
+			}
+		}
+	}
+	
+	public int cardCount() {
+		int sum=0;
+		for(CardCounter e:cardsInDeck) {
+			sum+=e.getCount();
+		}
+		return sum;
 	}
 
+	public boolean existInDeck(UnitCard card) {
+		for(CardCounter e:cardsInDeck) {
+			if(e.getCard()==card)
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean equals(UnitDeck other) {
+		return this.getDeckName()==other.getDeckName();
+	}
+	
 	public ArrayList<CardCounter> getCardsInDeck() {
 		return cardsInDeck;
 	}
 
 	public void setCardsInDeck(ArrayList<CardCounter> cardsInDeck) {
 		this.cardsInDeck = cardsInDeck;
+		if(cardsInDeck.size()==0)
+			this.cardsInDeck=new ArrayList<>();
 	}
 
 	public String getDeckName() {
@@ -28,7 +77,7 @@ public class UnitDeck {
 	}
 
 	public void setDeckName(String deckName) {
-		if (deckName == "") deckName = "Untitled Deck";
+		if (deckName.isBlank()) deckName = "Untitled Deck";
 		this.deckName = deckName;
 	}
 	
