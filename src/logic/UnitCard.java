@@ -25,7 +25,7 @@ public class UnitCard {
 	}
 
 	public void setName(String name) {
-		if(name=="") name = "Creature";
+		if(name.isBlank()) name = "Creature";
 		this.name = name;
 	}
 
@@ -43,7 +43,7 @@ public class UnitCard {
 	}
 
 	public void setHealth(int health) {
-		if(health<0) health=0;
+		if(health<1) health=1;
 		this.health = health;
 	}
 
